@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yanzhong Wu | Public Health ML Portfolio</title>
+    <link rel="icon" href="./static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Yanzhong Wu home">
+        <span class="brand-mark">YW</span>
+        <span>
+          <strong>Yanzhong Wu</strong>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#predictor">Predictor</a>
+        <a href="#data-method">Data</a>
+        <a href="#system">System</a>
+      </nav>
+      <div class="header-actions">
+        <div class="status-pill" id="api-status">Checking API</div>
+        <details class="contact-menu">
+          <summary>Contact Me</summary>
+          <div class="contact-popover">
+            <a href="mailto:alexwu020615@gmail.com">alexwu020615@gmail.com</a>
+            <a href="https://www.linkedin.com/in/yanzhong-wu-bb71883a9" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">Applied ML for public-health risk</p>
+          <h1>Building ML systems that turn messy real-world signals into usable decisions.</h1>
+          <p class="hero-text">
+            I am building toward machine learning engineering and software engineering roles. This site showcases a hantavirus risk early-warning platform with data pipelines, model serving, an API, and an interactive website for scenario analysis.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#predictor">Try the predictor</a>
+            <a class="secondary-link" href="#system">View architecture</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Risk signal preview">
+          <div class="map-shell">
+            <div id="risk-map" class="risk-map" aria-label="Risk map">
+              <div class="map-toolbar" aria-label="Map zoom controls">
+                <button type="button" id="map-zoom-in" aria-label="Zoom in">+</button>
+                <button type="button" id="map-zoom-out" aria-label="Zoom out">-</button>
+                <button type="button" id="map-reset" aria-label="Reset map">Reset</button>
+              </div>
+              <svg class="map-svg" viewBox="0 0 1000 560" role="img" aria-label="United States risk map">
+                <defs>
+                  <filter id="mapShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#26302b" flood-opacity="0.14" />
+                  </filter>
+                  <radialGradient id="riskGlow" cx="35%" cy="55%" r="45%">
+                    <stop offset="0%" stop-color="#ffe8cf" stop-opacity="0.9" />
+                    <stop offset="52%" stop-color="#f1d9c5" stop-opacity="0.28" />
+                    <stop offset="100%" stop-color="#f1d9c5" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <rect class="map-water" x="0" y="0" width="1000" height="560" />
+                <g id="map-viewport">
+                  <ellipse class="map-risk-glow" cx="335" cy="330" rx="255" ry="175" />
+                  <path class="map-land" filter="url(#mapShadow)" d="M124 152 L174 122 L247 112 L316 88 L384 102 L455 92 L528 110 L589 107 L654 128 L714 143 L772 166 L824 196 L864 237 L850 266 L819 281 L811 319 L784 336 L764 365 L733 383 L712 426 L669 443 L628 471 L557 477 L505 456 L463 471 L417 454 L374 470 L326 451 L299 413 L252 406 L210 377 L165 362 L139 316 L119 272 L101 236 L111 189 Z" />
+                  <path class="map-florida" d="M731 382 C768 397 811 425 843 475 C821 481 786 451 759 414 C748 402 738 393 731 382 Z" />
+                  <path class="map-region west" d="M124 152 L174 122 L247 112 L316 88 L372 104 L360 208 L314 270 L329 360 L299 413 L252 406 L210 377 L165 362 L139 316 L119 272 L101 236 L111 189 Z" />
+                  <path class="map-region mountain" d="M372 104 L455 92 L528 110 L543 238 L510 335 L532 449 L505 456 L463 471 L417 454 L374 470 L326 451 L299 413 L329 360 L314 270 L360 208 Z" />
+                  <path class="map-region central" d="M528 110 L589 107 L654 128 L714 143 L724 276 L690 354 L712 426 L669 443 L628 471 L557 477 L532 449 L510 335 L543 238 Z" />
+                  <path class="map-region east" d="M714 143 L772 166 L824 196 L864 237 L850 266 L819 281 L811 319 L784 336 L764 365 L733 383 L712 426 L690 354 L724 276 Z" />
+                  <path class="state-line" d="M360 208 L543 238 L724 276" />
+                  <path class="state-line" d="M329 360 L510 335 L690 354" />
+                  <path class="state-line" d="M372 104 L314 270 L299 413" />
+                  <path class="state-line" d="M528 110 L543 238 L532 449" />
+                  <path class="state-line" d="M714 143 L724 276 L712 426" />
+                  <ellipse class="map-lake" cx="735" cy="172" rx="38" ry="16" />
+                  <ellipse class="map-lake" cx="788" cy="205" rx="30" ry="13" />
+                  <ellipse class="map-lake" cx="825" cy="230" rx="24" ry="11" />
+                  <g id="map-markers"></g>
+                </g>
+              </svg>
+              <div class="map-caption" id="map-caption">Full demo coverage</div>
+            </div>
+          </div>
+          <div class="visual-caption">
+            <span>Live model endpoint</span>
+            <strong id="hero-risk">Awaiting scenario</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-label="Project highlights">
+        <div>
+          <strong id="metric-accuracy">--</strong>
+          <span>Demo model accuracy</span>
+        </div>
+        <div>
+          <strong>FastAPI</strong>
+          <span>Prediction service</span>
+        </div>
+        <div>
+          <strong>Random Forest</strong>
+          <span>Interpretable baseline</span>
+        </div>
+        <div>
+          <strong>Docker-ready</strong>
+          <span>Deployment path</span>
+        </div>
+      </section>
+
+      <section class="predictor-section" id="predictor">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive product</p>
+          <h2>Hantavirus Risk Scenario Predictor</h2>
+          <p>
+            The model estimates state-level public-health risk from season, climate, habitat, rurality, and historical case signals.
+          </p>
+        </div>
+
+        <div class="predictor-layout">
+          <section class="controls-panel" aria-label="Scenario controls">
+            <form id="risk-form">
+              <label>
+                State
+                <select id="state" name="state"></select>
+              </label>
+
+              <div class="split">
+                <label>
+                  Year
+                  <input id="year" name="year" type="number" min="1993" max="2100" value="2026" />
+                </label>
+                <label>
+                  Season
+                  <select id="season" name="season">
+                    <option>spring</option>
+                    <option selected>summer</option>
+                    <option>fall</option>
+                    <option>winter</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                Average temperature (F)
+                <input id="avg_temp_f" name="avg_temp_f" type="range" min="20" max="100" value="77" />
+                <output for="avg_temp_f">77</output>
+              </label>
+
+              <label>
+                Precipitation (in)
+                <input id="precip_in" name="precip_in" type="range" min="0" max="6" step="0.1" value="1.1" />
+                <output for="precip_in">1.1</output>
+              </label>
+
+              <label>
+                Drought index
+                <input id="drought_index" name="drought_index" type="range" min="0" max="5" step="0.1" value="3.5" />
+                <output for="drought_index">3.5</output>
+              </label>
+
+              <label>
+                Rural population (%)
+                <input id="rural_population_pct" name="rural_population_pct" type="range" min="0" max="70" value="36" />
+                <output for="rural_population_pct">36</output>
+              </label>
+
+              <label>
+                Forest cover (%)
+                <input id="forest_cover_pct" name="forest_cover_pct" type="range" min="0" max="80" value="31" />
+                <output for="forest_cover_pct">31</output>
+              </label>
+
+              <label>
+                Rodent habitat score
+                <input id="rodent_habitat_score" name="rodent_habitat_score" type="range" min="0" max="100" value="84" />
+                <output for="rodent_habitat_score">84</output>
+              </label>
+
+              <label>
+                Historical cases
+                <input id="historical_cases" name="historical_cases" type="range" min="0" max="12" value="8" />
+                <output for="historical_cases">8</output>
+              </label>
+
+              <button type="submit">Run Prediction</button>
+            </form>
+          </section>
+
+          <section class="results-panel" aria-live="polite">
+            <div class="risk-band" id="risk-band">
+              <p>Predicted risk</p>
+              <strong id="risk-level">Ready</strong>
+              <span id="confidence">Confidence pending</span>
+            </div>
+
+            <div class="visual-row">
+              <div class="chart-panel">
+                <h3>Class Probabilities</h3>
+                <canvas id="prob-chart" width="560" height="240"></canvas>
+              </div>
+              <div class="drivers-panel">
+                <h3>Key Drivers</h3>
+                <ul id="drivers"></ul>
+              </div>
+            </div>
+
+            <div class="actions-panel">
+              <h3>Planning Actions</h3>
+              <ul id="recommendations"></ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="data-section" id="data-method">
+        <div class="section-heading">
+          <p class="eyebrow">Data and method</p>
+          <h2>Where the signals come from</h2>
+          <p>
+            The current MVP uses clearly labeled demo data so the full product can run locally. The production data plan connects official public-health surveillance with climate, population, and land-cover features.
+          </p>
+        </div>
+        <div class="source-grid">
+          <article>
+            <span>Current MVP</span>
+            <h3>Demo training data</h3>
+            <p>State-year rows in the repository simulate surveillance-style, climate, and habitat features. They are only used to validate the pipeline, API, and website workflow.</p>
+          </article>
+          <article>
+            <span>Public health</span>
+            <h3>CDC / NNDSS</h3>
+            <p>Future official disease counts should come from CDC NNDSS annual or weekly surveillance data. Hantavirus is sparse, so the model is framed as risk-level classification.</p>
+          </article>
+          <article>
+            <span>Environment</span>
+            <h3>NOAA and land signals</h3>
+            <p>Temperature, precipitation, drought, rurality, forest cover, and habitat proxies are used as explainable signals connected to exposure conditions.</p>
+          </article>
+          <article>
+            <span>Output</span>
+            <h3>Risk level, not diagnosis</h3>
+            <p>The website predicts low, medium, or high state-level public-health risk for planning. It does not predict whether a person is infected.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="system-section" id="system">
+        <div class="section-heading">
+          <p class="eyebrow">System design</p>
+          <h2>End-to-end architecture</h2>
+        </div>
+        <div class="system-flow">
+          <div>
+            <strong>Data</strong>
+            <span>CDC/NNDSS, NOAA, Census, land cover</span>
+          </div>
+          <div>
+            <strong>Features</strong>
+            <span>Seasonality, drought, habitat, rurality, history</span>
+          </div>
+          <div>
+            <strong>Model</strong>
+            <span>Random Forest baseline, metrics, model card</span>
+          </div>
+          <div>
+            <strong>Serving</strong>
+            <span>FastAPI, Pydantic validation, JSON responses</span>
+          </div>
+          <div>
+            <strong>Website</strong>
+            <span>Portfolio, scenario controls, live predictions</span>
+          </div>
+        </div>
+        <div class="feature-panel">
+          <div>
+            <h3>Top Model Signals</h3>
+            <ol id="feature-importances"></ol>
+          </div>
+          <div>
+            <h3>Supported Demo States</h3>
+            <div class="state-grid" id="state-grid"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      Public-health planning only. Not clinical guidance. MVP uses demo data.
+    </footer>
+
+    <script src="./static/app.js"></script>
+  </body>
+</html>

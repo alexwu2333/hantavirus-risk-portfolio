@@ -1,0 +1,81 @@
+{
+  "model_name": "hantavirus-risk-random-forest",
+  "created_at": "2026-05-12T00:05:05.285071+00:00",
+  "task": "state-level public-health risk classification",
+  "target": "risk_level",
+  "features": [
+    "state",
+    "season",
+    "region",
+    "year",
+    "avg_temp_f",
+    "precip_in",
+    "drought_index",
+    "rural_population_pct",
+    "forest_cover_pct",
+    "rodent_habitat_score",
+    "historical_cases"
+  ],
+  "risk_levels": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "model_path": "/Users/alexwu/Documents/Codex/2026-05-11/project-machine-learning-mle-sde/models/risk_model.joblib",
+  "metrics_path": "/Users/alexwu/Documents/Codex/2026-05-11/project-machine-learning-mle-sde/reports/metrics.json",
+  "top_feature_importances": [
+    {
+      "feature": "rodent_habitat_score",
+      "importance": 0.22599
+    },
+    {
+      "feature": "drought_index",
+      "importance": 0.20938
+    },
+    {
+      "feature": "historical_cases",
+      "importance": 0.13907
+    },
+    {
+      "feature": "precip_in",
+      "importance": 0.11579
+    },
+    {
+      "feature": "avg_temp_f",
+      "importance": 0.07043
+    },
+    {
+      "feature": "forest_cover_pct",
+      "importance": 0.05284
+    },
+    {
+      "feature": "region_Southwest",
+      "importance": 0.03846
+    },
+    {
+      "feature": "year",
+      "importance": 0.02253
+    },
+    {
+      "feature": "rural_population_pct",
+      "importance": 0.02198
+    },
+    {
+      "feature": "region_Pacific Northwest",
+      "importance": 0.01555
+    },
+    {
+      "feature": "state_Arizona",
+      "importance": 0.01375
+    },
+    {
+      "feature": "season_winter",
+      "importance": 0.00971
+    }
+  ],
+  "limitations": [
+    "Demo data is not official surveillance data.",
+    "Predictions are not clinical guidance.",
+    "Sparse case counts make exact outbreak prediction inappropriate."
+  ]
+}
