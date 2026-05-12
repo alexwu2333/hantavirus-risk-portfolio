@@ -72,7 +72,7 @@ The website is served by FastAPI and built with plain HTML, CSS, and JavaScript:
 The repository includes a GitHub Pages-ready static build in `docs/`.
 
 - GitHub Pages should be configured to deploy from the `main` branch and `/docs` folder.
-- The public URL will look like `https://YOUR_GITHUB_USERNAME.github.io/hantavirus-risk-portfolio/`.
+- Public website: https://alexwu2333.github.io/hantavirus-risk-portfolio/
 - On GitHub Pages, the site uses a browser-side demo predictor fallback because GitHub Pages cannot run Python/FastAPI.
 - The full MLE/SDE version still runs locally or on a backend platform such as Render using FastAPI.
 
